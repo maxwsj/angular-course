@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, input, computed } from '@angular/core';
 
+// Input with signal
 @Component({
   selector: 'app-user',
   standalone: true,
@@ -7,12 +8,22 @@ import { Component, Input } from '@angular/core';
   styleUrl: './user.component.css',
 })
 export class UserComponent {
-  @Input({ required: true }) avatar!: string;
-  @Input({ required: true }) name!: string;
+  avatar = input.required<string>();
+  name = input<string>();
 
-  get imagePath() {
-    return `assets/users/${this.avatar}`;
-  }
+  imagePath = computed(() => `assets/users/${this.avatar()}`);
 
   onSelectUser() {}
 }
+
+// Input without signal
+// export class UserComponent {
+//   @Input({ required: true }) avatar!: string;
+//   @Input({ required: true }) name!: string;
+
+//   get imagePath() {
+//     return `assets/users/${this.avatar}`;
+//   }
+
+//   onSelectUser() {}
+// }
