@@ -12,7 +12,7 @@ export class UserComponent {
   @Input({ required: true }) id!: string;
   @Input({ required: true }) avatar!: string;
   @Input({ required: true }) name!: string;
-  @Output() select = new EventEmitter(); // Output decorator with EventEmitter
+  @Output() select = new EventEmitter<string>(); // Output decorator with EventEmitter
   // select = output<string>(); // output signal
 
   get imagePath() {
